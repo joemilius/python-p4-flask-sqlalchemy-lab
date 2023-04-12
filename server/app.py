@@ -21,10 +21,10 @@ def home():
 def animal_by_id(id):
     animal = Animal.query.filter(Animal.id == id).first()
     
-    # if not animal:
-    #     response_body = '<h1>404 animal not found</h1>'
-    #     response = make_response(response_body, 404)
-    #     return response
+    if not animal:
+        response_body = '<h1>404 animal not found</h1>'
+        response = make_response(response_body, 404)
+        return response
     
     response_body = f'''
     <ul>ID: {animal.id}</ul>
@@ -39,6 +39,11 @@ def animal_by_id(id):
 @app.route('/zookeeper/<int:id>')
 def zookeeper_by_id(id):
     zookeeper = Zookeeper.query.filter(Zookeeper.id == id).first()
+
+    if not zookeeper:
+        response_body = '<h1>404 zookeeper not found</h1>'
+        response = make_response(response_body, 404)
+        return response
 
     response_body = f'''
     <ul>Name: {zookeeper.name}</ul>
@@ -59,6 +64,11 @@ def zookeeper_by_id(id):
 @app.route('/enclosure/<int:id>')
 def enclosure_by_id(id):
     enclosure = Enclosure.query.filter(Enclosure.id == id).first()
+
+    if not enclosure:
+        response_body = '<h1>404 enclosure not found</h1>'
+        response = make_response(response_body, 404)
+        return response
 
     response_body = f'''
     <ul>Environment: {enclosure.environment}</ul>
